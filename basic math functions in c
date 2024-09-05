@@ -15,15 +15,15 @@ int main() {
     printf("The sum of %d and %d is %d\n", num1, num2, sum);
     int sub;
     sub=num1-num2;
-    printf("The subtraction of %d and %d is %d\n", num1, num2, sum);
+    printf("The subtraction of %d and %d is %d\n", num1, num2, sub);
     
     int prod;
     prod=num1*num2;
-    printf("The product of %d and %d is %d\n", num1, num2, sum);
+    printf("The product of %d and %d is %d\n", num1, num2, prod);
     
     int div;
     div=num1/num2;
-    printf("The division of %d and %d is %d\n", num1, num2, sum);
+    printf("The division of %d and %d is %d\n", num1, num2, div);
     
     
     return 0;
