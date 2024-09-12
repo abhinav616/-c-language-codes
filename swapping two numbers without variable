@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+  int a, b;
+
+    // Input the numbers
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+
+    // Display the numbers before swapping
+    printf("Before swapping: a = %d, b = %d\n", a, b);
+
+    // Swapping without using a temporary variable
+    a = a + b;
+    b = a - b;
+    a = a - b;
+
+    // Display the numbers after swapping
+    printf("After swapping: a = %d, b = %d\n", a, b);
+    return 0;
+}
