@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int *ptr = arr;
+
+    printf("Array elements using pointer arithmetic:\n");
+
+    // Accessing array elements using pointer arithmetic
+    for (int i = 0; i < 5; i++) {
+        printf("Element %d: %d\n", i+1, *(ptr + i));  // ptr + i is the address of arr[i]
+    }
+
+    // Pointer incrementing
+    ptr++;  // Move the pointer to the next element
+    printf("\nAfter incrementing the pointer:\n");
+    printf("Current element: %d\n", *ptr);  // Now points to arr[1]
+
+    // Pointer decrementing
+    ptr--;  // Move the pointer back to the previous element
+    printf("\nAfter decrementing the pointer:\n");
+    printf("Current element: %d\n", *ptr);  // Now points back to arr[0]
+
+    // Using pointer with offset
+    int *ptrOffset = ptr + 3;  // Move pointer 3 steps forward
+    printf("\nPointer with offset:\n");
+    printf("Element at offset 3: %d\n", *ptrOffset);  // Points to arr[3]
+
+    return 0;
+}
