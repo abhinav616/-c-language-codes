@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+struct Address {
+    char street[100];
+    char city[50];
+    char state[50];
+    int zipCode;
+};
+
+struct Student {
+    int rollNumber;
+    char name[50];
+    struct Address address;  // Nested structure
+};
+
+int main() {
+    struct Student student;
+
+    // Taking input for student information
+    printf("Enter student information:\n");
+
+    printf("Roll Number: ");
+    scanf("%d", &student.rollNumber);
+
+    printf("Name: ");
+    scanf(" %[^\n]", student.name);  // To read full name with spaces
+
+    // Taking input for the address (nested structure)
+    printf("Enter address details:\n");
+    printf("Street: ");
+    scanf(" %[^\n]", student.address.street);
+
+    printf("City: ");
+    scanf(" %[^\n]", student.address.city);
+
+    printf("State: ");
+    scanf(" %[^\n]", student.address.state);
+
+    printf("Zip Code: ");
+    scanf("%d", &student.address.zipCode);
+
+    // Displaying the student information
+    printf("\nStudent Information:\n");
+    printf("Roll Number: %d\n", student.rollNumber);
+    printf("Name: %s\n", student.name);
+    printf("Address: %s, %s, %s - %d\n", 
+           student.address.street, 
+           student.address.city, 
+           student.address.state, 
+           student.address.zipCode);
+
+    return 0;
+}
