@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+struct Student {
+    int rollNumber;
+    char name[50];
+    float marks;
+};
+
+int main() {
+    struct Student student;
+    struct Student *ptr = &student;  // Pointer to structure
+
+    // Taking input for the student using pointer
+    printf("Enter student information:\n");
+
+    printf("Roll Number: ");
+    scanf("%d", &ptr->rollNumber);
+
+    printf("Name: ");
+    scanf(" %[^\n]", ptr->name);  // To read full name with spaces
+
+    printf("Marks: ");
+    scanf("%f", &ptr->marks);
+
+    // Displaying the student information using pointer
+    printf("\nStudent Information:\n");
+    printf("Roll Number: %d\n", ptr->rollNumber);
+    printf("Name: %s\n", ptr->name);
+    printf("Marks: %.2f\n", ptr->marks);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
