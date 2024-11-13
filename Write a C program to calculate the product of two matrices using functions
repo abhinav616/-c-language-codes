@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+void multiplyMatrices(int rows1, int cols1, int rows2, int cols2, int matrix1[rows1][cols1], int matrix2[rows2][cols2], int result[rows1][cols2]) {
+    for (int i = 0; i < rows1; i++)
+        for (int j = 0; j < cols2; j++) {
+            result[i][j] = 0;
+            for (int k = 0; k < cols1; k++)
+                result[i][j] += matrix1[i][k] * matrix2[k][j];
+        }
+}
+
+void inputMatrix(int rows, int cols, int matrix[rows][cols]) {
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            scanf("%d", &matrix[i][j]);
+}
+
+void printMatrix(int rows, int cols, int matrix[rows][cols]) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++)
+            printf("%d ", matrix[i][j]);
+        printf("\n");
+    }
+}
+
+int main() {
+    int rows1, cols1, rows2, cols2;
+    scanf("%d %d %d %d", &rows1, &cols1, &rows2, &cols2);
+
+    if (cols1 != rows2) { printf("Multiplication not possible.\n"); return 0; }
+
+    int matrix1[rows1][cols1], matrix2[rows2][cols2], result[rows1][cols2];
+    inputMatrix(rows1, cols1, matrix1);
+    inputMatrix(rows2, cols2, matrix2);
+    multiplyMatrices(rows1, cols1, rows2, cols2, matrix1, matrix2, result);
+    printMatrix(rows1, cols2, result);
+
+    return 0;
+}
