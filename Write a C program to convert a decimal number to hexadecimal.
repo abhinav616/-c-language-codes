@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+void decimalToHexadecimal(int n) {
+    char hex[32];  // Array to store hexadecimal number
+    int i = 0;
+    char hexDigits[] = "0123456789ABCDEF";  // Hexadecimal digits
+
+    // Check for the edge case when the number is 0
+    if (n == 0) {
+        printf("Hexadecimal: 0\n");
+        return;
+    }
+
+    // Convert the decimal number to hexadecimal
+    while (n > 0) {
+        hex[i] = hexDigits[n % 16];
+        n = n / 16;
+        i++;
+    }
+
+    // Print the hexadecimal number in reverse order
+    printf("Hexadecimal: ");
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%c", hex[j]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int num;
+
+    printf("Enter a decimal number: ");
+    scanf("%d", &num);
+
+    decimalToHexadecimal(num);
+
+    return 0;
+}
