@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+
+void binarySum(char num1[], char num2[]) {
+    int len1 = strlen(num1);
+    int len2 = strlen(num2);
+    int maxLength = (len1 > len2) ? len1 : len2;  // Find the maximum length of the two binary numbers
+    int carry = 0;
+    char sum[maxLength + 2];  // Array to store the sum (extra space for carry)
+
+    int i = len1 - 1;
+    int j = len2 - 1;
+    int k = 0;
+
+    // Perform binary addition from right to left
+    while (i >= 0 || j >= 0 || carry) {
+        int bit1 = (i >= 0) ? num1[i] - '0' : 0;  // Get the bit from num1 (or 0 if index out of range)
+        int bit2 = (j >= 0) ? num2[j] - '0' : 0;  // Get the bit from num2 (or 0 if index out of range)
+        
+        int sumBit = bit1 + bit2 + carry;  // Sum of bits and carry
+        sum[k] = (sumBit % 2) + '0';  // Store the result as a character ('0' or '1')
+        carry = sumBit / 2;  // Update the carry (0 or 1)
+
+        i--;
+        j--;
+        k++;
+    }
+
+    // Reverse the sum array to get the correct result
+    sum[k] = '\0';  // Null terminate the string
+    for (int l = 0; l < k / 2; l++) {
+        char temp = sum[l];
+        sum[l] = sum[k - l - 1];
+        sum[k - l - 1] = temp;
+    }
+
+    printf("Sum: %s\n", sum);
+}
+
+int main() {
+    char num1[100], num2[100];
+
+    printf("Enter the first binary number: ");
+    scanf("%s", num1);
+    
+    printf("Enter the second binary number: ");
+    scanf("%s", num2);
+
+    binarySum(num1, num2);
+
+    return 0;
+}
