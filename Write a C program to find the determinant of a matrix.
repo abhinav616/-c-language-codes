@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+#define MAX_SIZE 10
+
+// Function to get the cofactor of a matrix
+void getCofactor(int mat[MAX_SIZE][MAX_SIZE], int temp[MAX_SIZE][MAX_SIZE], int p, int q, int size) {
+    int i = 0, j = 0;
+
+    // Loop through the matrix and fill the cofactor matrix
+    for (int row = 0; row < size; row++) {
+        for (int col = 0; col < size; col++) {
+            if (row != p && col != q) {
+                temp[i][j++] = mat[row][col];
+                if (j == size - 1) {
+                    j = 0;
+                    i++;
+                }
+            }
+        }
+    }
+}
+
+// Function to calculate the determinant of a matrix
+int determinant(int mat[MAX_SIZE][MAX_SIZE], int size) {
+    int det = 0;
+    if (size == 1) {
+        return mat[0][0];  // Base case: single element
+    }
+
+    int temp[MAX_SIZE][MAX_SIZE];  // To store cofactors
+
+    // Expanding the first row (Laplace expansion)
+    for (int f = 0; f < size; f++) {
+        // Get the cofactor of mat[0][f]
+        getCofactor(mat, temp, 0, f, size);
+        
+        // Adding or subtracting the cofactors based on the column index
+        det += (f % 2 == 0 ? 1 : -1) * mat[0][f] * determinant(temp, size - 1);
+    }
+
+    return det;
+}
+
+void printMatrix(int mat[MAX_SIZE][MAX_SIZE], int size) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int mat[MAX_SIZE][MAX_SIZE];
+    int size;
+
+    printf("Enter the size of the matrix: ");
+    scanf("%d", &size);
+
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            scanf("%d", &mat[i][j]);
+        }
+    }
+
+    printf("Matrix:\n");
+    printMatrix(mat, size);
+
+    int result = determinant(mat, size);
+    printf("Determinant of the matrix is: %d\n", result);
+
+    return 0;
+}
